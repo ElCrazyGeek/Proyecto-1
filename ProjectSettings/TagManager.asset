@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - item
+  - zona de muerte
+  - muerte
+  - Derrota
+  - Victoria
+  - Muerte definitiva
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Fondo
+    uniqueID: 3630879171
+    locked: 0
+  - name: lava
+    uniqueID: 390992831
+    locked: 0
+  - name: escenario
+    uniqueID: 2714466931
+    locked: 0
+  - name: Elementos y personajes
+    uniqueID: 1439158819
+    locked: 0
+  - name: Escenas finales
+    uniqueID: 2556859413
+    locked: 0
+  m_RenderingLayers:
+  - Default
