@@ -28,6 +28,16 @@ public class Saque : MonoBehaviour
             playing=true;
 
         }
+        
+        if(ScoreP1>=5){
+            Debug.Log("Perdiste");
+            Time.timeScale=0; //congelamos el tiempo (el juego)
+        }
+        if(ScoreP2>=5){
+            Debug.Log("Ganaste");
+            Time.timeScale=0; //congelamos el tiempo (el juego)
+        }
+        
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
