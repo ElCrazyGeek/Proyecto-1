@@ -12,6 +12,7 @@ public class Saque : MonoBehaviour
     public float fuerza;
 
     public Transform Inicio;
+    public GameObject Victoria, Derrota;
 
     public bool playing;
 
@@ -29,15 +30,16 @@ public class Saque : MonoBehaviour
 
         }
         
-        if(ScoreP1>=5){
+        if(ScoreP2>=5){
             Debug.Log("Perdiste");
             Time.timeScale=0; //congelamos el tiempo (el juego)
+            Derrota.SetActive(true); // se activa el panel de derrota
         }
-        if(ScoreP2>=5){
+        if(ScoreP1>=5){
             Debug.Log("Ganaste");
             Time.timeScale=0; //congelamos el tiempo (el juego)
+            Victoria.SetActive(true); // se activa el panel de Victoria
         }
-        
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemigo : MonoBehaviour
 {
    public Transform pelota;
+   public float pelotaVel; 
     void Start()
     {
         
@@ -11,6 +12,7 @@ public class Enemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position= new Vector2(transform.position.x,pelota.position.y);
+        float target = Mathf.MoveTowards(transform.position.y, pelota.position.y, pelotaVel*Time.deltaTime);
+        transform.position= new Vector2(transform.position.x, target);
     }
 }
