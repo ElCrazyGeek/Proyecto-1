@@ -12,6 +12,11 @@ TagManager:
   - Muerte definitiva
   - GolP1
   - GolP2
+  - Bloque
+  - bloque
+  - Fail
+  - inicio
+  - Inicio
   layers:
   - Default
   - TransparentFX
