@@ -3,15 +3,20 @@ using TMPro; // con esto importamos comandos de TextMeshPro
 
 public class Pelota: MonoBehaviour
 { 
-    public  int Score; //varibles numericas
+    public  int Vidas; //varibles numericas
+    
+    public int Score;
 
-    public TextMeshProUGUI textoP1; //variables de texto 
+    public Transform incio;
+
+    public TextMeshProUGUI textoP1, Vida_txt; //variables de texto 
 
     Rigidbody2D PelotaRB;//Este es el rigitbody de 
     public float fuerza;
 
     public Transform Inicio;
     public GameObject Victoria, Derrota;
+
 
     public bool playing;
 
@@ -41,21 +46,27 @@ public class Pelota: MonoBehaviour
            playing=false;
         PelotaRB.linearVelocity=Vector2.zero;
         transform.position=Inicio.position;
-            textoP1.text="Perdiste" +Score.ToString();//cambiamos el texto
+            textoP1.text="Perdiste" +Vidas.ToString();//cambiamos el texto
         }
         
-        if(collision.gameObject.CompareTag("GolP1")){
-           playing=false;
-        PelotaRB.linearVelocity=Vector2.zero;
-        transform.position=Inicio.position;
-            Score++;
-            textoP1.text="Player 1\n " +Score.ToString();//cambiamos el texto
-        }
     }
      void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("bloque")){
             Destroy(collision.gameObject);
+        }
+
+         if(collision.gameObject.CompareTag("Fail")){
+           playing=false;
+        PelotaRB.linearVelocity=Vector2.zero;
+        transform.position=Inicio.position;
+            Vidas--;
+            Vida_txt.text=Vidas.ToString();//cambiamos el texto
+            if(Vidas==0){
+            Debug.Log("Perdiste");
+            Time.timeScale=0; //congelamos el tiempo (el juego)
+            Derrota.SetActive(true); // se activa el panel de Victoria
+        }
         }
     }
 }
