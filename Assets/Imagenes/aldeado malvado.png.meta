@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      aldeado malvado_0: 2156671553488576725
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

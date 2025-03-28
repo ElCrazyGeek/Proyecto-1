@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      aldeano_0: 5589752663774663257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

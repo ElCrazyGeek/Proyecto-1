@@ -1661,7 +1661,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 891058310}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1746779842}
+        m_TargetAssemblyTypeName: ResetGame, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &891058310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2676,16 +2688,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce5dcfed4a52644f8087191235a23a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vidas: 5
+  Vidas: 10
   Score: 0
-  incio: {fileID: 0}
+  Paleta: {fileID: 1807680296}
   textoP1: {fileID: 1064556729}
   Vida_txt: {fileID: 2010258618}
-  fuerza: 10
-  Inicio: {fileID: 1746921484}
   Victoria: {fileID: 781404072}
   Derrota: {fileID: 1811145474}
-  playing: 0
+  fuerza: 10
 --- !u!114 &1085188024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,7 +2852,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167379518}
-  - component: {fileID: 1167379517}
   - component: {fileID: 1167379519}
   m_Layer: 0
   m_Name: Reinicio
@@ -2851,18 +2860,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1167379517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167379516}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bff89851dce8644aa0f8497691e85ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1167379518
 Transform:
   m_ObjectHideFlags: 0
@@ -2892,9 +2889,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Puntaje: {fileID: 1010144735}
   Score: 0
-  Vidas_txt: {fileID: 0}
+  Vidas_txt: {fileID: 2010258618}
   vidas: 5
-  Victoria: {fileID: 781404072}
+  Victoria: {fileID: 1519143563}
   Derrota: {fileID: 1811145474}
 --- !u!1 &1196216686
 GameObject:
@@ -3445,7 +3442,7 @@ GameObject:
   - component: {fileID: 1519143564}
   - component: {fileID: 1519143566}
   - component: {fileID: 1519143565}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Victoria
   m_TagString: Victoria2do
   m_Icon: {fileID: 0}
@@ -3470,7 +3467,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1120, y: -630}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1519143565
 MonoBehaviour:
@@ -3488,7 +3485,7 @@ MonoBehaviour:
   m_Color: {r: 0.5195652, g: 1, b: 0, a: 0.15686275}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3860,6 +3857,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590693779}
   m_CullTransparentMesh: 1
+--- !u!1 &1746779841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746779843}
+  - component: {fileID: 1746779842}
+  m_Layer: 0
+  m_Name: ResetReal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1746779842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746779841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496d485816cf81c44b466fb216001a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1746779843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746779841}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71119475, y: -1.0279318, z: 0.040225353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746921483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4239,7 +4280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1885430435}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1746779842}
+        m_TargetAssemblyTypeName: ResetGame, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1885430435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4570,4 +4623,5 @@ SceneRoots:
   - {fileID: 1564436374}
   - {fileID: 906752688}
   - {fileID: 1383594275}
+  - {fileID: 1746779843}
   - {fileID: 1167379518}
