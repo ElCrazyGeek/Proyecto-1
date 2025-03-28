@@ -2688,7 +2688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce5dcfed4a52644f8087191235a23a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vidas: 10
+  Vidas: 5
   Score: 0
   Paleta: {fileID: 1807680296}
   textoP1: {fileID: 1064556729}
