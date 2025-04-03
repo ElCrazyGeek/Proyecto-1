@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BreakOut_arcadeflyer_0: -5312419501405063259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
