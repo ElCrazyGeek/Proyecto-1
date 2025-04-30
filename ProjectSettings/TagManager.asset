@@ -20,6 +20,8 @@ TagManager:
   - Victoria2do
   - Derrota2do
   - Enemigo
+  - Enemigo1
+  - Jugador
   layers:
   - Default
   - TransparentFX
