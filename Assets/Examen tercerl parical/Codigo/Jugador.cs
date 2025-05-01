@@ -7,36 +7,32 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public float LaBalaSpeed = 10f;
 
-    public int maxHealth = 100;
-    private int currentHealth;
-
     Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
     }
 
     void Update()
     {
-        // Movimiento en 4 direcciones con WASD o flechas
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         Vector2 moveDirection = new Vector2(moveX, moveY).normalized;
-
-        // Aplicar movimiento en FixedUpdate, pero almacenar dirección aquí
         rb.linearVelocity = moveDirection * moveSpeed;
 
-        // Rotar el firePoint hacia el ratón
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         Vector2 aimDirection = (mousePos - firePoint.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         firePoint.rotation = Quaternion.Euler(0, 0, angle);
 
-        // Disparar
         AimAndShoot(aimDirection);
+
+        if (Input.GetKeyDown(KeyCode.K)) // Presiona K para probar
+        {
+            InstantDeath();
+        }
     }
 
     void AimAndShoot(Vector2 aimDirection)
@@ -61,24 +57,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        Debug.Log($"Jugador recibió {damage} de daño. Vida actual: {currentHealth}");
-        if (currentHealth <= 0)
+        Debug.Log($"PlayerController.TakeDamage llamado con {damage} de daño");
+        if (GameManagerETP.Instance != null)
         {
-            Die();
+            GameManagerETP.Instance.TakeDamage(damage);
+        }
+        else
+        {
+            Debug.LogWarning("GameManagerETP no está configurado. No se aplicó daño.");
         }
     }
 
     public void InstantDeath()
     {
         Debug.Log("Jugador murió instantáneamente");
-        Die();
-    }
-
-    void Die()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DefeatScreen");
+        if (GameManagerETP.Instance != null)
+        {
+            GameManagerETP.Instance.TakeDamage(100f);
+        }
     }
 }

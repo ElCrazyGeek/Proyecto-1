@@ -1,30 +1,42 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManagerETP : MonoBehaviour
 {
     public static GameManagerETP Instance;
 
     public int score = 0;
-    public int playerLives = 4; // Empieza con 4 porque si te disparan 4 veces es muerte
+    public int playerLives = 4;
+    public float playerEnergy = 100f;
+    private int enemiesAlive = 0;
 
-    public Text scoreText;
-    public Text livesText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
+    public Slider energyBar;
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
     {
         UpdateUI();
-        gameOverPanel.SetActive(false);
-        victoryPanel.SetActive(false);
+        enemiesAlive = GameObject.FindGameObjectsWithTag("Enemigo1").Length;
+        Debug.Log($"Enemigos iniciales: {enemiesAlive}");
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (victoryPanel != null) victoryPanel.SetActive(false);
     }
 
     public void AddScore(int value)
@@ -33,38 +45,94 @@ public class GameManagerETP : MonoBehaviour
         UpdateUI();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        playerLives -= amount;
+        playerEnergy -= amount;
         UpdateUI();
-
-        if (playerLives <= 0)
+        if (playerEnergy <= 0)
         {
-            GameOver();
+            playerLives--;
+            if (playerLives <= 0)
+            {
+                GameOver();
+            }
+            else
+            {
+                playerEnergy = 100f;
+                RespawnPlayer();
+            }
+        }
+    }
+
+    public void EnemyDied()
+    {
+        enemiesAlive--;
+        Debug.Log($"Enemigos restantes: {enemiesAlive}");
+        if (enemiesAlive <= 0)
+        {
+            Victory();
         }
     }
 
     public void Victory()
     {
-        Time.timeScale = 0f; // Pausa el juego
-        victoryPanel.SetActive(true);
+        Time.timeScale = 0f;
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("No se puede activar victoryPanel porque no está asignado");
+        }
     }
 
     public void GameOver()
     {
-        Time.timeScale = 0f; // Pausa el juego
-        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("No se puede activar gameOverPanel porque no está asignado");
+        }
     }
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; // Reinicia el tiempo
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+        score = 0;
+        playerLives = 4;
+        playerEnergy = 100f;
+        UpdateUI();
+        SceneManager.LoadScene("Examen tercer parcial");
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (scoreText != null) scoreText.text = "Score: " + score;
         if (livesText != null) livesText.text = "Vidas: " + playerLives;
+        if (energyBar != null) energyBar.value = playerEnergy;
+    }
+
+    public int GetScore() // Añadido para UIManager
+    {
+        return score;
+    }
+
+    private void RespawnPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Jugador");
+        if (player != null)
+        {
+            player.transform.position = Vector3.zero; // Centro de la pantalla
+            UpdateUI();
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró el Jugador para respawnear");
+        }
     }
 }

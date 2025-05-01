@@ -5,18 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Escena segundo parcial.unity
     guid: 708fa87f46599bd40a5ff13660e2d840
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Pong.unity
     guid: 95d3e7722063a63449bb7f214c7c650b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Examen Breakout.unity
     guid: 8bf91ad847d464e4894d22ba28cf988d
+  - enabled: 1
+    path: Assets/Examen tercerl parical/Escena/MainMenu.unity
+    guid: 69453be9d249ebc499529bd62d35632a
+  - enabled: 1
+    path: Assets/Examen tercerl parical/Escena/Examen tercer parcial.unity
+    guid: 49d4bf5566411894e9f4f7845b95283c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

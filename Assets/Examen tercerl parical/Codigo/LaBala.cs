@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LaBala : MonoBehaviour
 {
-    public int damage = 50; 
+    public float damage = 25f;
     public float lifetime = 2f;
 
     void Start()
@@ -19,16 +19,17 @@ public class LaBala : MonoBehaviour
             Enemigo1 enemigo = other.GetComponent<Enemigo1>();
             if (enemigo != null)
             {
-                enemigo.TakeDamage(damage);
+                enemigo.TakeDamage((int)damage);
             }
             Destroy(gameObject);
         }
         else if (other.CompareTag("Jugador"))
         {
-            PlayerController jugador = other.GetComponent<PlayerController>();
-            if (jugador != null)
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
             {
-                jugador.TakeDamage(damage);
+                Debug.Log($"Aplicando {damage} de daño al jugador");
+                player.TakeDamage(damage);
             }
             Destroy(gameObject);
         }
