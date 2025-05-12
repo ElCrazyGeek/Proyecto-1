@@ -2,34 +2,37 @@ using UnityEngine;
 
 public class LaBala : MonoBehaviour
 {
-    public float damage = 25f;
+    public float speed = 20f;
+    public float damage = 10f;
     public float lifetime = 2f;
+    private Rigidbody2D rb;
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = transform.right * speed;
+        Destroy(gameObject, lifetime); // Destruir tras lifetime segundos
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Bala colisionó con: {other.gameObject.name} (Tag: {other.tag})");
-
-        if (other.CompareTag("Enemigo1"))
+        if (collision.CompareTag("Enemigo1"))
         {
-            Enemigo1 enemigo = other.GetComponent<Enemigo1>();
-            if (enemigo != null)
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                enemigo.TakeDamage((int)damage);
+                enemy.TakeDamage(damage, false); // Balas no noquean
+                Debug.Log($"Bala golpeó a {collision.name}, daño: {damage}");
             }
-            Destroy(gameObject);
+            Destroy(gameObject); // Destruir la bala al impactar
         }
-        else if (other.CompareTag("Jugador"))
+        else if (collision.CompareTag("Jugador"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                Debug.Log($"Aplicando {damage} de daño al jugador");
                 player.TakeDamage(damage);
+                Debug.Log($"Bala golpeó al jugador, daño: {damage}");
             }
             Destroy(gameObject);
         }

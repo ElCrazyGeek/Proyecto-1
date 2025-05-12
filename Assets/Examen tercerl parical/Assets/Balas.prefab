@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1878765108116665391}
   - component: {fileID: 3522210969989076437}
-  - component: {fileID: 3820329598340088644}
   - component: {fileID: 1451090732163923206}
   - component: {fileID: 4292709153450253312}
+  - component: {fileID: 4160073432215175242}
   m_Layer: 0
   m_Name: Balas
   m_TagString: Untagged
@@ -90,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3820329598340088644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 102050052913069696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c1ba2a12534eb4ca8bc64a3bc24718, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  lifetime: 5
 --- !u!50 &1451090732163923206
 Rigidbody2D:
   serializedVersion: 5
@@ -112,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102050052913069696}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -130,7 +116,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &4292709153450253312
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,4 +152,18 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.49999997
+  m_Radius: 0.1
+--- !u!114 &4160073432215175242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102050052913069696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ac00b02c721ea4c92119886f87073e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  lifetime: 2

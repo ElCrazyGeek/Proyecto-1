@@ -11,6 +11,7 @@ public class GameManagerETP : MonoBehaviour
     public int playerLives = 4;
     public float playerEnergy = 100f;
     private int enemiesAlive = 0;
+    private int enemiesInAlertOrThreat = 0;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
@@ -23,6 +24,7 @@ public class GameManagerETP : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -34,9 +36,19 @@ public class GameManagerETP : MonoBehaviour
     {
         UpdateUI();
         enemiesAlive = GameObject.FindGameObjectsWithTag("Enemigo1").Length;
+        enemiesInAlertOrThreat = 0;
         Debug.Log($"Enemigos iniciales: {enemiesAlive}");
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (victoryPanel != null) victoryPanel.SetActive(false);
+
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.SyncMusicWithGameState();
+        }
+        else
+        {
+            Debug.LogWarning("MusicManager no encontrado al iniciar GameManagerETP");
+        }
     }
 
     public void AddScore(int value)
@@ -64,13 +76,17 @@ public class GameManagerETP : MonoBehaviour
         }
     }
 
-    public void EnemyDied()
+    public void EnemyDied(bool isMainTarget = false)
     {
         enemiesAlive--;
         Debug.Log($"Enemigos restantes: {enemiesAlive}");
-        if (enemiesAlive <= 0)
+        if (isMainTarget)
         {
             Victory();
+        }
+        else
+        {
+            AddScore(100); // 100 puntos por enemigo opcional
         }
     }
 
@@ -84,6 +100,11 @@ public class GameManagerETP : MonoBehaviour
         else
         {
             Debug.LogWarning("No se puede activar victoryPanel porque no está asignado");
+        }
+
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayPacificMusic();
         }
     }
 
@@ -106,6 +127,7 @@ public class GameManagerETP : MonoBehaviour
         score = 0;
         playerLives = 4;
         playerEnergy = 100f;
+        enemiesInAlertOrThreat = 0;
         UpdateUI();
         SceneManager.LoadScene("Examen tercer parcial");
     }
@@ -117,7 +139,7 @@ public class GameManagerETP : MonoBehaviour
         if (energyBar != null) energyBar.value = playerEnergy;
     }
 
-    public int GetScore() // Añadido para UIManager
+    public int GetScore()
     {
         return score;
     }
@@ -127,12 +149,41 @@ public class GameManagerETP : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Jugador");
         if (player != null)
         {
-            player.transform.position = Vector3.zero; // Centro de la pantalla
+            player.transform.position = Vector3.zero;
             UpdateUI();
         }
         else
         {
             Debug.LogWarning("No se encontró el Jugador para respawnear");
         }
+    }
+
+    public void EnemyEnteredAlertOrThreat()
+    {
+        enemiesInAlertOrThreat++;
+        Debug.Log($"Enemigos en Alerta/Amenaza: {enemiesInAlertOrThreat}");
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayAlertMusic();
+        }
+        else
+        {
+            Debug.LogWarning("MusicManager no encontrado");
+        }
+    }
+
+    public void EnemyReturnedToPacific()
+    {
+        enemiesInAlertOrThreat = Mathf.Max(0, enemiesInAlertOrThreat - 1);
+        Debug.Log($"Enemigos en Alerta/Amenaza: {enemiesInAlertOrThreat}");
+        if (enemiesInAlertOrThreat == 0 && MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayPacificMusic();
+        }
+    }
+
+    public int GetEnemiesInAlertOrThreat()
+    {
+        return enemiesInAlertOrThreat;
     }
 }

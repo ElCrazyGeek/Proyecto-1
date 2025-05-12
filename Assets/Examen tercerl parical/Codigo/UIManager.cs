@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("UIManager.RestartGame llamado");
         if (GameManagerETP.Instance != null)
         {
             GameManagerETP.Instance.RestartGame();
